@@ -20,24 +20,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libgl1-mesa-glx \
     openjdk-8-jdk-headless
 
-# See http://bugs.python.org/issue19846
-ENV LANG C.UTF-8
-
-# Add arguments to achieve the version, python and url
-ARG PYTHON_VERSION=2.7
-ARG OPEN_MPI_VERSION=4.0.1
-
-RUN wget https://www.open-mpi.org/software/ompi/v4.0/downloads/openmpi-$OPEN_MPI_VERSION.tar.gz && \
-    gunzip -c openmpi-$OPEN_MPI_VERSION.tar.gz | tar xf - && \
-    cd openmpi-$OPEN_MPI_VERSION && \
-    ./configure --prefix=/home/.openmpi && \
-    make all install && \
-    cd .. && rm openmpi-$OPEN_MPI_VERSION.tar.gz && rm -rf openmpi-$OPEN_MPI_VERSION
-
-ENV PATH="$PATH:/home/.openmpi/bin"
-ENV LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/home/.openmpi/lib/"
-
-RUN ompi_info --parsable --all | grep mpi_built_with_cuda_support:value
 
 RUN curl -o ~/miniconda.sh -O  https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh  && \
      chmod +x ~/miniconda.sh && \
