@@ -16,7 +16,7 @@ import os
 
 resources_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'resources'))
 mnist_path = os.path.join(resources_path, 'mnist')
-mnist_script = os.path.join(mnist_path, 'mnist.py')
+mnist_script = os.path.join(resources_path, 'bert_model_fn.py')
 fastai_path = os.path.join(resources_path, 'fastai')
 fastai_cifar_script = os.path.join(fastai_path, 'train_cifar.py')
 fastai_mnist_script = os.path.join(fastai_path, 'mnist.py')
