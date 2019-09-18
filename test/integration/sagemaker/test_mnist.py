@@ -46,7 +46,7 @@ def _test_mnist_distributed(sagemaker_session, ecr_image, instance_type):
     )
 
     pytorch = PyTorchModel(model_data,
-                           'SageMakerRole',
+                           'arn:aws:iam::438190081246:role/service-role/AmazonSageMaker-ExecutionRole-20190619T221293',
                            mnist_script,
                            ecr_image,
                            sagemaker_session)

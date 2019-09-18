@@ -58,7 +58,6 @@ class DefaultPytorchInferenceHandler(default_inference_handler.DefaultInferenceH
 
         tokens = self.tokenizer.tokenize(sentence)
         mask_index = tokens.index(masked_word)  # TODO support range / phrases
-        len_tokens = len(tokens)
         mask_position = len(tokens) + mask_index + 2  # [CLS] tokens.. [SEP] tok..[mask]..ens
 
         tokens_for_prediction = ['[CLS]'] + tokens + ['[SEP]'] + tokens + ['[SEP]']
@@ -73,7 +72,6 @@ class DefaultPytorchInferenceHandler(default_inference_handler.DefaultInferenceH
         input_type_ids = cls_tokens_sep + tokens_sep + padding
 
         input_mask = [1] * len(tokens_for_prediction) + padding
-
 
         tokens_tensor = torch.tensor([input_ids])
         token_type_ids = torch.tensor([input_type_ids])
