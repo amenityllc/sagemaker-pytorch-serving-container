@@ -50,10 +50,10 @@ RUN conda install -c conda-forge awscli==1.16.210 opencv==4.0.1 && \
                      pillow==5.4.1 \
                      h5py==2.9.0 \
                      requests==2.22.0 && \
-    conda install pytorch==$PYTORCH_VERSION cpuonly -c pytorch && \
+    conda install pytorch==$PYTORCH_VERSION torchvision==$TORCHVISION_VERSION cpuonly -c pytorch && \
     conda clean -ya && \
     pip install --upgrade pip --trusted-host pypi.org --trusted-host files.pythonhosted.org && \
-    pip install pytorch_transformers \
+    pip install pytorch_transformers && \
     ln -s /opt/conda/bin/pip /usr/local/bin/pip3 && \
     pip install --pre -U mxnet-model-server
 
